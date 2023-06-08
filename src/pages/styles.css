@@ -1,0 +1,150 @@
+body {
+    background-color: #f2f2f2;
+}
+
+.square {
+    position: absolute;
+    margin: 1%;
+    border-radius: 2vh;
+    background-color: white;
+}
+
+#one {
+    width: 15%;
+    height: 70%;
+}
+
+#two {
+    width: 80%;
+    height: 10%;
+    left: 17%;
+}
+
+#three {
+    width: 39%;
+    height: 57%;
+    left: 17%;
+    top: 14.1%;
+}
+
+#four {
+    width: 39.5%;
+    height: 57%;
+    left: 57.5%;
+    top: 14.1%;
+}
+
+#five {
+    width: 96.5%;
+    height: 25%;
+    top: 73.75%;
+}
+
+.search {
+    position: absolute;
+    margin: 2.4%;
+    padding-left: 1.2%;
+
+    width: 27%;
+    height: 4%;
+    left: 60%;
+
+    background: rgba(65, 170, 144, 0.13);
+
+    border-radius: 2vh;
+    border: none;
+
+    font-size: 1rem;
+    /* font-family: "Roboto", Arial, sans-serif; */
+}
+
+.search:focus {
+    outline: none;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+.user {
+    position: absolute;
+    margin-top: 2.1%;
+
+    /* font-family: 'Roboto'; */
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 23px;
+
+    left: 24.5%;
+
+    color: #53565A;
+}
+
+.cargo {
+    position: absolute;
+    margin-top: 3.5%;
+
+    /* font-family: 'Roboto'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 23px;
+
+    left: 24.5%;
+
+    color: #8F9194;
+}
+
+.profile {
+    position: absolute; 
+
+    width: 3%;
+    height: 6.3%;
+
+    border-radius: 100%;
+
+    margin-top: 1.9%;
+    left: 20%;
+}
+
+.status {
+    position: absolute;
+    width: 0.85%; 
+    padding-bottom: 0.85%;
+    background-color: #4ECB71;
+    border-radius: 10vh;
+    left: 22.25%; 
+    margin-top: 4.25%;
+
+}
+
+#columnchart_material{
+    position: absolute;
+    left: 21%;
+    top: 22%;
+}
+
+#piechart_3d {
+    position: absolute;
+    left: 58.5%;
+    top: 15%;
+    margin: 1%;
+    
+}
+
+.chat {
+    position: absolute;
+    left: 94.5%;
+    background: url(/src/assets/Group.svg);
+    background-repeat: no-repeat;
+    margin-top: 2.75%; 
+}
+
+.notification {
+    position: absolute;
+    left: 92%;
+    background: url(/src/assets/Group2.svg);
+    background-repeat: no-repeat;
+    margin-top: 2.75%; 
+}
+
+

@@ -11,7 +11,7 @@ body{
         .rectangle-3{
             background: #ffffff;
             border-radius: 16px;
-            padding: 2rem 2rem 2rem 2rem;
+            padding: 2rem 2rem 14.5rem 2rem;
             margin: 1rem;
 
             .sidebar{
@@ -215,7 +215,7 @@ body{
                 /* margin: 1rem; */
 
                 background: #ffffff;
-                padding: 4rem 4rem 4rem  5rem;
+                padding: 4rem 4rem 4rem  4rem;
                 border-radius: 16px;
             }
 

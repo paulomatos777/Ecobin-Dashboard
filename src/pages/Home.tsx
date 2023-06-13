@@ -7,44 +7,58 @@ import { ManuntencaoSectionIcon } from '../icons/ManutencaoSectionIcon';
 import { RelatorioSectionIcon } from '../icons/RelatorioSectionIcon';
 import { NotificationIcon } from '../icons/NotificationIcon';
 import { MessageIcon } from '../icons/MessageIcons';
+import { useEffect, useState } from 'react';
+import { API_URL } from '../api';
+import axios from 'axios';
 
 const Home = () => {
 
-  //Bar Chart Graph Data
-   const data = [
-    ["Year", "Sales", "Expenses", "Profit"],
-    ["2014", 1000, 400, 200],
-    ["2015", 1170, 460, 250],
-    ["2016", 660, 1120, 300],
-    ["2017", 1030, 540, 350],
-  ];
+  
+  const [chartTotalRegioes, setChartTotalRegioes] = useState([["Região", "Peso Reciclado", "Peso Rejeito"]]);
+  const [qtdPessoasResiduos, setQtdPessoasResiduos] = useState([["Quantidade Moradores", "Peso Reciclado", "Peso Rejeito"]]);
+
+    useEffect(() => {
+      axios.get("http://localhost:8800/totalporregiao").then((response) => {
+        console.log(response.data);
+        const data = response.data.map((obj: { [x: string]: string; regiao: any; }) => [
+          obj.regiao,
+          parseFloat(obj["SUM(des.peso_reciclado)"]),
+          parseFloat(obj["SUM(des.peso_rejeito)"])
+        ]);
+        setChartTotalRegioes(prevState => [...prevState, ...data]);
+      });
+    }, []);
 
 
-   const options = {
-    chart: {
-      title: "Lixo Tratado por Zonas de São Paulo",
-      subtitle: "",
-    },
-    colors:['#41AA90', '#85B6FF', '#562D1B'] 
+    useEffect(() => {
+      axios.get("http://localhost:8800/qtdpessoasresiduos").then((response) => {
+        console.log(response.data);
+        const data = response.data.map((obj: { [x: string]: string; }) => [
+          obj["quantidade_moradores"],
+          parseFloat(obj["AVG(des.peso_reciclado)"]),
+          parseFloat(obj["AVG(des.peso_rejeito)"])
+        ]);
+        setQtdPessoasResiduos(prevState => [...prevState, ...data]);
+      });
+    }, []);
+
+  const opcoesTotalRegioes = {
+    title: "Descartes de resíduos por regiões",
+    pieHole: 0.4,
+    colors: ['#236152', '#48A4F9'],
   };
 
 
-  //Line Chart Graph Data
-const LineData =  [
-  ["Year", "Sales", "Expenses", "Profit"],
-  ["2014", 1000, 400, 200],
-  ["2015", 1170, 460, 250],
-  ["2016", 660, 1120, 300],
-  ["2017", 1030, 540, 350],
-];
-  
-const LineOptions = {
-  title: "Company Performance",
-  curveType: "function",
-  legend: { position: "bottom" },
-  colors:['#41AA90', '#85B6FF', '#562D1B'] 
-};
-
+  const opqtdPesRes = {
+    title: "Descartes de resíduos x Quantidade pessoas no condominio",
+    hAxis: {
+      title: 'Quantidade Moradores'
+    },
+    vAxis: {
+      title: 'Residuos'
+    },
+    colors: ['#236152', '#48A4F9'],
+  };
 
   return (
     <div className='home-container'>
@@ -115,22 +129,30 @@ const LineOptions = {
           </div>
           <div className='data-second'>
             <div className='rectangle-5'>
-                <Chart
-                  chartType="Bar"
-                  width="100%"
-                  height="100%"
-                  data={data}
-                  options={options}
-                />
+                    <Chart
+                    chartType="ColumnChart"
+                    data={chartTotalRegioes}
+                    options={opcoesTotalRegioes}
+                    width="100%"
+                    height="400px"
+                  />
             </div>
             <div className='rectangle-6'>
-               <Chart
+               {/* <Chart
                 chartType="LineChart"
                 width="100%"
                 height="100%"
                 data={LineData}
                 options={LineOptions}
-                />
+                /> */}
+
+              <Chart
+                    chartType="LineChart"
+                    data={qtdPessoasResiduos}
+                    options={opqtdPesRes}
+                    width="100%"
+                    height="400px"
+                  />
               </div>
           </div>
         </div>
